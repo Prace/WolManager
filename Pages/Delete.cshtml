@@ -1,0 +1,33 @@
+﻿@page
+@model WolManagerApp.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Vuoi davvero cancellare questo elemento?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WolData.ComputerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WolData.ComputerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WolData.MACAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WolData.MACAddress)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="WolData.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Torna alla home</a>
+    </form>
+</div>

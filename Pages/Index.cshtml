@@ -1,0 +1,52 @@
+﻿@page
+@model WolManagerApp.Pages.IndexModel
+
+@{
+        ViewData["Title"] = "Index";
+}
+
+<h1>Wake on LAN Manager</h1>
+
+<div>
+    <a class="btn btn-success" asp-page="Create">Crea Nuovo</a>
+</div>
+<br/>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Computer
+                </th>
+                <th>
+                    MAC Address
+                </th>
+                <th>Azioni</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.WolData)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ComputerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MACAddress)
+                    </td>
+                    <td>
+                        <form asp-page-handler="TurnOnPC" method="post">
+                            <button class="btn btn-primary">Accendi PC</button>
+                            <input type="hidden" name="macaddress" value="@item.MACAddress" />
+                        </form>
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Modifica</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Rimuovi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
